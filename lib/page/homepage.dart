@@ -72,16 +72,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildBooks(){
-    return ListView.builder(
-      itemCount: books.length,
-      itemBuilder: (context, index){
-        return BookWidget(
+    return GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2
+        ),
+        itemCount: books.length,
+        itemBuilder: (BuildContext ctx, index) {
+          return BookWidget(
             title: books[index].title,
             coverUrl: books[index].coverUrl,
             description: books[index].description,
             bookId: books[index].id,
-            );
-      },
-    );
+          );
+        });
   }
 }

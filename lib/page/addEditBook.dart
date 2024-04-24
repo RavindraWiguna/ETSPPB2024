@@ -66,7 +66,10 @@ class _AddEditBookState extends State<AddEditBook> {
           backgroundColor: isFormValid ? null : Colors.grey.shade700,
         ),
         onPressed: addOrUpdateNote,
-        child: const Text('Save Book'),
+        child: const Text('Save Book',
+        style: TextStyle(
+          color: Colors.black
+        ),),
       ),
     );
   }
