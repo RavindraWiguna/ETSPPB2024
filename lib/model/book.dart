@@ -47,7 +47,7 @@ class Book {
   static Book fromJson(Map<String, Object?> json) => Book(
     id: json[BookFields.id] as int?,
     title: json[BookFields.title] as String,
-    createdTime: json[BookFields.time] as DateTime,
+    createdTime: DateTime.parse(json[BookFields.time] as String),
     coverUrl: json[BookFields.coverUrl] as String,
     description: json[BookFields.description] as String
   );

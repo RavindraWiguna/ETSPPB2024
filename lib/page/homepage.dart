@@ -1,6 +1,8 @@
 import 'package:etsppb/db/BooksDatabase.dart';
+import 'package:etsppb/widget/BookWidget.dart';
 import 'package:flutter/material.dart';
 import '../model/book.dart';
+import '../page/addEditBook.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,10 +46,42 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: Colors.blue,
       ),
-      // body: ,
-      // floatingActionButton: FloatingActionButton(
+      body: Center(
+        child: isLoading? CircularProgressIndicator():
+        books.isEmpty? Text(
+          'No Book yet',
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 24
+          ),
+        ) : buildBooks(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue[800],
+        child: const Icon(
+            Icons.add,
+            color: Colors.white,
+        ),
+        onPressed: () async {
+          await Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => AddEditBook(book: null)
+          ));
+        },
+      ),
+    );
+  }
 
-      // ),
+  Widget buildBooks(){
+    return ListView.builder(
+      itemCount: books.length,
+      itemBuilder: (context, index){
+        return BookWidget(
+            title: books[index].title,
+            coverUrl: books[index].coverUrl,
+            description: books[index].description,
+            bookId: books[index].id,
+            );
+      },
     );
   }
 }
