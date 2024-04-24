@@ -42,7 +42,7 @@ class BooksDatabase{
       ${BookFields.title} $textType,
       ${BookFields.time} $textType,
       ${BookFields.coverUrl} $textType,
-      ${BookFields.description} $textType,
+      ${BookFields.description} $textType
     )
         '''
     );
