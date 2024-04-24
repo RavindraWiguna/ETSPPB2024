@@ -46,6 +46,11 @@ class DetailBook extends StatelessWidget {
             ],
           ),
           SizedBox(height: 3,),
+          Row(
+            children: [
+              Text(book.createdTime.toString())
+            ],
+          ),
           // description
           Row(
             children: [
