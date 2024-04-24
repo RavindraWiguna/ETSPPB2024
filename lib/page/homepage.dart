@@ -3,6 +3,7 @@ import 'package:etsppb/widget/BookWidget.dart';
 import 'package:flutter/material.dart';
 import '../model/book.dart';
 import '../page/addEditBook.dart';
+import '../page/detailBook.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -78,11 +79,21 @@ class _HomePageState extends State<HomePage> {
         ),
         itemCount: books.length,
         itemBuilder: (BuildContext ctx, index) {
-          return BookWidget(
-            title: books[index].title,
-            coverUrl: books[index].coverUrl,
-            description: books[index].description,
-            bookId: books[index].id,
+          return GestureDetector(
+            onTap: ()async{
+              await Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => DetailBook(book: books[index]),
+              ));
+
+              // refresh
+              await refreshBooks();
+            },
+            child: BookWidget(
+              title: books[index].title,
+              coverUrl: books[index].coverUrl,
+              description: books[index].description,
+              bookId: books[index].id,
+            ),
           );
         });
   }
